@@ -22,7 +22,7 @@ global:
 
 scene:
     background:
-        color: [0.000,0.000,0.000]
+        color: [0.491,0.780,0.756]
 
 sources:
     # mapzen:
@@ -62,46 +62,6 @@ layers:
                 style: earth-pixelate
                 order: global.feature_order
                 color: [0.100,0.100,0.100]
-
-    # water:
-    #     data: { source: mapzen, layer: water }
-    #     draw:
-    #         polygons:
-    #             style: water-stripes
-    #             order: global.feature_order
-    #             color: [1.000,0.000,0.000]
-
-    #     lakes:
-    #         filter:
-    #             all:
-    #                 - kind: [ocean, lake, water, riverbank, reservoir, swimming_pool]
-    #             any:
-    #                 # limit show smaller landuse areas to higher zooms
-    #                 - { $zoom: [1],  area: { min: 10000000000 } }
-    #                 - { $zoom: [2],  area: { min: 7000000000 } }
-    #                 # some weird natural earth scale set transition
-    #                 - { $zoom: [3],  area: { min: 5000000000 } }
-    #                 - { $zoom: [4],  area: { min: 300000000 } }
-    #                 - { $zoom: [5],  area: { min: 50000000 } }
-    #                 - { $zoom: [6],  area: { min: 50000000 } }
-    #                 - { $zoom: [7],  area: { min: 50000000 } }
-    #                 - { $zoom: [8],  area: { min: 50000000 } }
-    #                 - { $zoom: [9],  area: { min: 15000000 } }
-    #                 - { $zoom: [10], area: { min: 4000000 } }
-    #                 - { $zoom: [11], area: { min: 1000000 } }
-    #                 - { $zoom: [12], area: { min: 250000 } }
-    #                 - { $zoom: [13], area: { min: 150000 } }
-    #                 - { $zoom: [14], area: { min: 40000 } }
-    #                 - { $zoom: { min: 15 } }
-    #         draw:
-    #             polygons:
-    #                 color: [1.000,0.000,0.000]
-
-    #     other-water-areas:
-    #         filter: { not: { kind: [ocean, lake, water, reservoir] }, $zoom: { min: 11 }, area: { min: 100 } }
-    #         draw:
-    #             polygons:
-    #                 color: [1.000,0.000,0.000]
 
     water:
         data: { source: mapzen, layer: water }
@@ -203,7 +163,7 @@ layers:
             draw:
                 polygons:
                     style: parks-stripes
-                    color: [1.000,0.000,0.000]
+                    # color: [1.000,1.000,1.000]
                     visible: true
 
         parks-and-national-forests-not-national-park:
@@ -362,31 +322,31 @@ layers:
         #             color: [0.460,0.460,0.460]
         #             width: [[16,0px], [18,2px]]
 
-    buildings:
-        data: { source: mapzen, layer: buildings }
-        filter:
-            not: { location: underground }
-        draw:
-            polygons:
-                visible: false
-                order: 329
-                color: [0.240,0.232,0.228]
+    # buildings:
+    #     data: { source: mapzen, layer: buildings }
+    #     filter:
+    #         not: { location: underground }
+    #     draw:
+    #         polygons:
+    #             visible: false
+    #             order: 329
+    #             color: [0.240,0.232,0.228]
 
-        footprints:
-            filter:
-                any:
-                    - { $zoom: [13], scale_rank: [1,2] }
-                    - { $zoom: [14], scale_rank: [1,2,3] }
-                    - { $zoom: [15], height: { min: 100 } }
-                    - { $zoom: [15], area: { min: 700 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], area: { min: 100 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: { min: 17 }, area: true }
-            draw:
-                polygons:
-                    visible: true
-                    style: buildings-pixelate
+    #     footprints:
+    #         filter:
+    #             any:
+    #                 - { $zoom: [13], scale_rank: [1,2] }
+    #                 - { $zoom: [14], scale_rank: [1,2,3] }
+    #                 - { $zoom: [15], height: { min: 100 } }
+    #                 - { $zoom: [15], area: { min: 700 } }
+    #                 - { $zoom: [15], volume: { min: 100000 } }
+    #                 - { $zoom: [16], area: { min: 100 } }
+    #                 - { $zoom: [16], volume: { min: 50000 } }
+    #                 - { $zoom: { min: 17 }, area: true }
+    #         draw:
+    #             polygons:
+    #                 visible: true
+    #                 style: buildings-pixelate
 
 styles:
     earth-pixelate:
@@ -395,8 +355,8 @@ styles:
         shaders:
             defines:
                 PIXELATE_SCALE: 40.
-                PIXELATE_COLOR: color.rgb*.12
-                PIXELATE_BACKGROUND_COLOR: color.rgb
+                PIXELATE_COLOR: vec3(0.855,0.780,0.525)
+                PIXELATE_BACKGROUND_COLOR: vec3(0.780,0.653,0.476)
 
     water-pixelate:
         base: polygons
@@ -404,8 +364,8 @@ styles:
         shaders:
             defines:
                 PIXELATE_SCALE: 5.
-                PIXELATE_COLOR: color.rgb*.295
-                PIXELATE_BACKGROUND_COLOR: color.rgb
+                PIXELATE_COLOR: vec3(0.491,0.780,0.756)
+                PIXELATE_BACKGROUND_COLOR: vec3(0.363,0.740,0.709)
 
     buildings-pixelate:
         base: polygons
@@ -422,34 +382,40 @@ styles:
         shaders:
             defines:
                 PIXELATE_SCALE: 40.
-                PIXELATE_COLOR: color.rgb*.17
-                PIXELATE_BACKGROUND_COLOR: color.rgb
+                PIXELATE_COLOR: vec3(0.469,0.710,0.477)
+                PIXELATE_BACKGROUND_COLOR: vec3(0.365,0.630,0.409)
 
     parks-stripes:
         base: polygons
-        mix: [polygons-stripes]
+        mix: [functions-aastep, patterns-stripes, space-screen]
         shaders:
             defines:
-                STRIPES_SCALE: 30
-                STRIPES_WIDTH: 0.75
-                STRIPES_ALPHA: 0.52
+                STRIPES_WIDTH: .75
+                STRIPES_ALPHA: .5
+                STRIPES_SCALE: 2.
                 STRIPES_ANGLE: 3.14159265
             blocks:
-                filter: |
-                    color.rgb = mix(vec3(0.082,0.090,0.090), vec3(0.092,0.116,0.120), gl_FragCoord.x / u_resolution.x);
+                color: |
+                    vec2 st = getScreenNonStretchCoords();
+                    color.rgb = mix(vec3(0.469,0.710,0.477),vec3(0.365,0.630,0.409),stripes(st*85.,
+                                        STRIPES_WIDTH,
+                                        STRIPES_ANGLE));
 
     university-stripes:
         base: polygons
-        mix: [polygons-stripes]
+        mix: [functions-aastep, patterns-stripes, space-screen]
         shaders:
             defines:
-                STRIPES_SCALE: 10
-                STRIPES_WIDTH: 0.75
-                STRIPES_ALPHA: 0.25
+                STRIPES_WIDTH: .75
+                STRIPES_ALPHA: .5
+                STRIPES_SCALE: 2.
                 STRIPES_ANGLE: 3.14159265
             blocks:
-                filter: |
-                    color.rgb = mix(vec3(0.140,0.135,0.133), vec3(0.092,0.116,0.120), gl_FragCoord.x / u_resolution.x);
+                color: |
+                    vec2 st = getScreenNonStretchCoords();
+                    color.rgb = mix(vec3(0.855,0.780,0.525),vec3(0.820,0.697,0.525),stripes(st*85.,
+                                        STRIPES_WIDTH,
+                                        STRIPES_ANGLE));
 
     polygons-pixelate:
         ui:
@@ -553,51 +519,56 @@ styles:
         base: polygons
         blend: overlay
 
-    polygons-stripes:
-        ui:
-            shaders:
-                defines:
-                    STRIPES_SCALE:
-                        type: number
-                        label: Scale
-                        range:
-                            min: 1.
-                            max: 1000.
-                            step: 1.
-                    STRIPES_WIDTH:
-                        type: number
-                        label: Width
-                        range:
-                            min: 0.
-                            max: 1.
-                            step: 0.01
-                    STRIPES_ALPHA:
-                        type: number
-                        label: Amount
-                        range:
-                            min: 0.
-                            max: 1.
-                            step: 0.01
-                    STRIPES_ANGLE:
-                        type: number
-                        label: Angle (radiants)
-                        range:
-                            min: 0.
-                            max: 3.1415
-                            step: 0.1
-        base: polygons
-        mix: [patterns-stripes, space-tile]
+    space-screen:
+        doc:
+            author: 
+                name: Patricio Gonzalez Vivo
+                twitter: patriciogv
+            version: 0.0.1
+            tangram-version: 0.0.7
+            licence: MIT
+            description: |
+                Get the coordinates in screen space streaching the proportion ('vec2 getScreenCoords ()') or non-streatching the proportion ('getScreenNonStretchCoords ()')
+            examples:
+                press:
+                    url: https://tangrams.github.io/tangram-sandbox/styles/press.yaml
+                    img: https://tangrams.github.io/tangram-sandbox/styles/press.png
+                    lines: 136-145
+                radar:
+                    url: https://tangrams.github.io/tangram-sandbox/styles/radar.yaml
+                    img: https://tangrams.github.io/tangram-sandbox/styles/radar.png
+                    lines: 0-143
+        test:
+            screen:
+                blocks:
+                    color: |
+                        vec2 st = getScreenCoords();
+                        color.rg += fract(st*3.);
+            screen_nonstretch:
+                blocks:
+                    color: |
+                        vec2 st = getScreenNonStretchCoords();
+                        color.rg += fract(st*3.);
         shaders:
-            defines:
-                STRIPES_WIDTH: .5
-                STRIPES_ALPHA: 1.0
-                STRIPES_SCALE: 2.
-                STRIPES_ANGLE: PI*0.25
             blocks:
-                color: |
-                    color.a = stripes(  getTileCoords()*STRIPES_SCALE,
-                                        STRIPES_WIDTH,
-                                        STRIPES_ANGLE)*STRIPES_ALPHA;
+                global: |
+                    #ifdef TANGRAM_FRAGMENT_SHADER
+                    vec2 getScreenCoords () {
+                        return gl_FragCoord.xy / u_resolution.xy;
+                    }
+
+                    vec2 getScreenNonStretchCoords () {
+                        vec2 st = getScreenCoords();
+                        if (u_resolution.y > u_resolution.x ) {
+                            st.y *= u_resolution.y/u_resolution.x;
+                            st.y -= (u_resolution.y*.5-u_resolution.x*.5)/u_resolution.x;
+                        } else {
+                            st.x *= u_resolution.x/u_resolution.y;
+                            st.x -= (u_resolution.x*.5-u_resolution.y*.5)/u_resolution.y;
+                        } 
+                        return st;
+                    }
+                    #endif
 
     patterns-stripes:
         mix: [functions-aastep, geometry-matrices]
