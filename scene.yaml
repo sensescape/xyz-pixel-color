@@ -128,7 +128,7 @@ layers:
         data: { source: mapzen, layer: earth }
         draw:
             polygons:
-                style: grid-gradient-university
+                style: grid-gradient-earth
                 order: global.feature_order
                 color: [0.925,0.925,0.925]
 
@@ -136,7 +136,7 @@ layers:
         data: { source: mapzen, layer: water }
         draw:
             polygons:
-                style: water-pixelate
+                style: grid-gradient-water
                 order: global.feature_order
                 color: [0.980,0.980,0.980]
 
@@ -174,7 +174,7 @@ layers:
 
     landuse:
         data: { source: mapzen }
-        enabled: false
+        enabled: true
         draw:
             polygons:
                 order: global.feature_order
@@ -189,7 +189,7 @@ layers:
                     - protect_class: ['2','3','5']
             draw:
                 polygons:
-                    style: parks-pixelate
+                    style: grid-gradient-green
                     color: [0.960,0.960,0.960]
                     visible: true
             us_national_park:
@@ -200,7 +200,7 @@ layers:
                         - protect_class: ['2','3','5']
                 draw:
                     polygons:
-                        style: parks-pixelate
+                        style: grid-gradient-green
                         color: [0.960,0.960,0.960]
                         visible: true
 
@@ -211,7 +211,7 @@ layers:
                 not: { protect_class: ['2','3','5']}
             draw:
                 polygons:
-                    style: parks-pixelate
+                    style: grid-gradient-green
                     color: [0.960,0.960,0.960]
                     visible: true
 
@@ -224,7 +224,7 @@ layers:
                     - operator: ['United States Forest Service']
             draw:
                 polygons:
-                    style: parks-pixelate
+                    style: grid-gradient-green
                     color: [0.960,0.960,0.960]
                     visible: true
         
@@ -232,7 +232,7 @@ layers:
             filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
             draw:
                 polygons:
-                    style: parks-pixelate
+                    style: grid-gradient-green
                     color: [0.960,0.960,0.960]
                     visible: true
 
@@ -247,29 +247,47 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: parks-pixelate
+                    style: grid-gradient-green
                     color: [0.960,0.960,0.960]
                     visible: true
             national_park:
                 #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
                 filter:
                     all:
-                        - kind: parks-pixelate
+                        - kind: national_park
                         - not: [ protect_class: ['2','3','5','6'], operator: [ "United States National Park Service"] ]
                 draw:
                     polygons:
                         visible: true
 
-        university:
+        garden:
             filter:
-                all:
-                    - kind: [university, college]
-                    - $zoom: { min: 14 }
+                kind: garden
             draw:
                 polygons:
-                    style: university-pixelate
-                    color: [0.960,0.960,0.960]
+                    style: grid-gradient-garden
+                    color: global.light_color
                     visible: true
+
+        beach:
+            filter:
+                kind: beach
+            draw:
+                polygons:
+                    style: grid-gradient-beach
+                    color: global.light_color
+                    visible: true
+
+        # university:
+        #     filter:
+        #         all:
+        #             - kind: [university, college]
+        #             - $zoom: { min: 14 }
+        #     draw:
+        #         polygons:
+        #             style: university-pixelate
+        #             color: [0.960,0.960,0.960]
+        #             visible: true
 
     roads:
         data: { source: mapzen, layer: roads }
@@ -799,7 +817,7 @@ layers:
 
     buildings:
         data: { source: mapzen, layer: buildings }
-        enabled: false
+        enabled: true
         filter:
             not: { location: underground }
         draw:
@@ -809,35 +827,35 @@ layers:
                 color: [0.925,0.925,0.925]
 
         footprints:
-            filter:
-                any:
-                    - { $zoom: [13], scale_rank: [1,2] }
-                    - { $zoom: [14], scale_rank: [1,2,3] }
-                    - { $zoom: [15], height: { min: 100 } }
-                    - { $zoom: [15], area: { min: 700 } }
-                    - { $zoom: [15], volume: { min: 100000 } }
-                    - { $zoom: [16], area: { min: 100 } }
-                    - { $zoom: [16], volume: { min: 50000 } }
-                    - { $zoom: { min: 17 }, area: true }
+            # filter:
+            #     any:
+            #         - { $zoom: [13], scale_rank: [1,2] }
+            #         - { $zoom: [14], scale_rank: [1,2,3] }
+            #         - { $zoom: [15], height: { min: 100 } }
+            #         - { $zoom: [15], area: { min: 700 } }
+            #         - { $zoom: [15], volume: { min: 100000 } }
+            #         - { $zoom: [16], area: { min: 100 } }
+            #         - { $zoom: [16], volume: { min: 50000 } }
+            #         - { $zoom: { min: 17 }, area: true }
             draw:
                 polygons:
                     visible: true
-                    style: buildings-pixelate
+                    style: grid-gradient-buildings
 
-        in_university:
-            filter: { landuse_kind: [university,school] }
-            draw:
-                polygons:
-                    visible: true
-                    style: grid-gradient-university
+        # in_university:
+        #     filter: { landuse_kind: [university,school] }
+        #     draw:
+        #         polygons:
+        #             visible: true
+        #             style: grid-gradient-university
 
-        in_park:
-            filter:
-                landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
-            draw:
-                polygons:
-                    visible: true
-                    style: grid-gradient-parks
+        # in_park:
+        #     filter:
+        #         landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
+        #     draw:
+        #         polygons:
+        #             visible: true
+        #             style: grid-gradient-parks
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -961,7 +979,7 @@ layers:
 
     places:
         data: { source: mapzen, layer: places }
-        enabled: false
+        enabled: true
         filter:
             name: true
         draw:
@@ -1233,42 +1251,87 @@ styles:
         mix: [polygons-pixelate]
         shaders:
             defines:
-                PIXELATE_SCALE: 20.
+                PIXELATE_SCALE: 10.
                 PIXELATE_COLOR: color.rgb*.95
                 PIXELATE_BACKGROUND_COLOR: color.rgb
 
-    grid-gradient-university:
+    grid-gradient-earth:
         base: polygons
-        mix: [space-tile]
+        mix: [grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.950,0.950,0.950] # lower-left
-                    - [1.000,1.000,1.000] # lower-right
-                    - [1.000,1.000,1.000] # upper-left
-                    - [0.843,0.843,0.843] # upper-right
-                u_grid_size: 18
-            blocks:
-                color: |
-                    vec2 st = getTileCoords();
-                    vec2 f_st = fract(st * u_grid_size);
-                    color.rgb = mix(
-                        mix(u_colors[0], u_colors[1], f_st.x),
-                        mix(u_colors[2], u_colors[3], f_st.x),
-                        f_st.y
-                    );
+                    - [0.970,0.937,0.883] # lower-left
+                    - [0.960,0.960,0.960] # lower-right
+                    - [0.900,0.900,0.900] # upper-left
+                    - [0.940,0.940,0.940] # upper-right
 
-    grid-gradient-parks:
+    grid-gradient-water:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.980,0.980,0.980] # lower-left
+                    - [0.940,1.000,0.942] # lower-right
+                    - [0.873,0.962,0.970] # upper-left
+                    - [1.000,1.000,1.000] # upper-right
+
+    grid-gradient-green:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.783,0.870,0.816] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.920,0.920,0.920] # upper-left
+                    - [0.952,0.952,0.952] # upper-right
+
+    grid-gradient-garden:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.443,0.750,0.576] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.920,0.920,0.920] # upper-left
+                    - [0.952,0.952,0.952] # upper-right
+
+    grid-gradient-beach:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [1.000,0.945,0.700] # lower-left
+                    - [0.990,0.990,0.990] # lower-right
+                    - [0.970,0.969,0.920] # upper-left
+                    - [0.962,0.962,0.962] # upper-right
+
+    grid-gradient-buildings:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+
+    grid-gradient:
         base: polygons
         mix: [space-tile]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.850,0.850,0.850] # lower-left
-                    - [1.000,1.000,1.000] # lower-right
-                    - [1.000,1.000,1.000] # upper-left
-                    - [0.982,0.982,0.982] # upper-right
-                u_grid_size: 21
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 16
             blocks:
                 color: |
                     vec2 st = getTileCoords();
