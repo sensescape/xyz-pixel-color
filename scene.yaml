@@ -1219,42 +1219,6 @@ styles:
                 PIXELATE_COLOR: color.rgb*.96
                 PIXELATE_BACKGROUND_COLOR: color.rgb
 
-    water-pixelate:
-        base: polygons
-        mix: [polygons-pixelate]
-        shaders:
-            defines:
-                PIXELATE_SCALE: 10.
-                PIXELATE_COLOR: color.rgb*.98
-                PIXELATE_BACKGROUND_COLOR: color.rgb
-
-    buildings-pixelate:
-        base: polygons
-        mix: [polygons-pixelate]
-        shaders:
-            defines:
-                PIXELATE_SCALE: 40.
-                PIXELATE_COLOR: color.rgb*.85
-                PIXELATE_BACKGROUND_COLOR: color.rgb
-
-    parks-pixelate:
-        base: polygons
-        mix: [polygons-pixelate]
-        shaders:
-            defines:
-                PIXELATE_SCALE: 30.
-                PIXELATE_COLOR: color.rgb*.91
-                PIXELATE_BACKGROUND_COLOR: color.rgb
-
-    university-pixelate:
-        base: polygons
-        mix: [polygons-pixelate]
-        shaders:
-            defines:
-                PIXELATE_SCALE: 10.
-                PIXELATE_COLOR: color.rgb*.95
-                PIXELATE_BACKGROUND_COLOR: color.rgb
-
     grid-gradient-earth:
         base: polygons
         mix: [grid-gradient]
