@@ -289,6 +289,15 @@ layers:
         #             color: [0.960,0.960,0.960]
         #             visible: true
 
+        golf_course:
+            filter:
+                kind: golf_course
+            draw:
+                polygons:
+                    style: grid-gradient-golf
+                    color: global.lightest_color
+                    visible: true
+
     roads:
         data: { source: mapzen, layer: roads }
         enabled: false
@@ -1273,6 +1282,17 @@ styles:
                     - [0.960,0.960,0.960] # lower-right
                     - [0.990,0.990,0.990] # upper-left
                     - [0.962,0.962,0.962] # upper-right
+
+    grid-gradient-golf:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.710,0.850,0.629] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.920,0.920,0.920] # upper-left
+                    - [0.950,0.950,0.950] # upper-right
 
     grid-gradient-buildings:
         base: polygons
