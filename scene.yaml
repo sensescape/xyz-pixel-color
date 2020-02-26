@@ -260,6 +260,25 @@ layers:
                     polygons:
                         visible: true
 
+        farm:
+            filter:
+                kind: [farm, farmland]
+                $zoom: { min: 10}
+            draw:
+                polygons:
+                    style: grid-gradient-farm
+                    color: global.light_color
+                    visible: true
+
+        university:
+            filter:
+                kind: [university, college]
+            draw:
+                polygons:
+                    style: grid-gradient-university
+                    color: global.lightest_color
+                    visible: true
+
         garden:
             filter:
                 kind: garden
@@ -858,6 +877,20 @@ layers:
                     visible: true
                     style: grid-gradient-university-bldgs
 
+        in_hosptal:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    visible: true
+                    style: grid-gradient-hospital-bldgs
+
+        in_retail:
+            filter: { landuse_kind: retail }
+            draw:
+                polygons:
+                    visible: true
+                    style: grid-gradient-retail-bldgs
+
         # in_park:
         #     filter:
         #         landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
@@ -1272,6 +1305,28 @@ styles:
                     - [0.920,0.920,0.920] # upper-left
                     - [0.952,0.952,0.952] # upper-right
 
+    grid-gradient-farm:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.828,0.860,0.714] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.920,0.920,0.920] # upper-left
+                    - [0.952,0.952,0.952] # upper-right
+
+    grid-gradient-university:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.910,0.871,0.855] # lower-left
+                    - [0.980,0.930,0.764] # lower-right
+                    - [0.920,0.920,0.920] # upper-left
+                    - [0.980,0.950,0.902] # upper-right
+
     grid-gradient-beach:
         base: polygons
         mix: [grid-gradient]
@@ -1315,6 +1370,28 @@ styles:
                     - [0.932,0.932,0.932] # lower-right
                     - [0.870,0.848,0.827] # upper-left
                     - [1.000,0.893,0.800] # upper-right
+
+    grid-gradient-hospital-bldgs:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.790,0.561,0.584] # lower-left
+                    - [0.932,0.932,0.932] # lower-right
+                    - [0.870,0.848,0.827] # upper-left
+                    - [1.000,0.870,0.870] # upper-right
+
+    grid-gradient-retail-bldgs:
+        base: polygons
+        mix: [grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.780,0.632,0.546] # lower-left
+                    - [0.932,0.932,0.932] # lower-right
+                    - [0.870,0.848,0.827] # upper-left
+                    - [1.000,0.942,0.750] # upper-right
 
     grid-gradient:
         base: polygons
