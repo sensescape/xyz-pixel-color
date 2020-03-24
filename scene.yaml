@@ -1301,10 +1301,10 @@ styles:
         shaders:
             uniforms:
                 u_colors:
-                    - [0.000,0.000,0.150] # lower-left
-                    - [0.070,0.000,0.650] # lower-right
-                    - [0.000,0.000,0.150] # upper-left
-                    - [0.000,0.000,0.150] # upper-right
+                    - [0.010,0.010,0.060] # lower-left
+                    - [0.050,0.040,0.600] # lower-right
+                    - [0.010,0.010,0.060] # upper-left
+                    - [0.010,0.010,0.060] # upper-right
 
     grid-gradient-buildings:
         base: polygons
