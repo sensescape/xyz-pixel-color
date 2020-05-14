@@ -321,17 +321,6 @@ layers:
                     color: global.light_color
                     visible: true
 
-        # # university:
-        # #     filter:
-        # #         all:
-        # #             - kind: [university, college]
-        # #             - $zoom: { min: 14 }
-        # #     draw:
-        # #         polygons:
-        # #             style: university-pixelate
-        # #             color: [0.960,0.960,0.960]
-        # #             visible: true
-
         # golf_course:
         #     filter:
         #         kind: golf_course
@@ -343,7 +332,7 @@ layers:
 
     roads:
         data: { source: mapzen, layer: roads }
-        enabled: false
+        enabled: true
         draw:
             lines:
                 visible: true
@@ -389,16 +378,16 @@ layers:
             draw:
                 lines:
                     style: lines-pixelate
-                    color: [1.000,0.783,0.000]
+                    color: [0.410,0.260,0.201]
                     width: [[5, 0.5px], [6, 0.5px], [7, 0.75px]]
                     outline:
-                        color: global.mid_color
+                        color: [0.000,0.000,0.000]
                         width: [[9, 0px], [10, 0px], [12, 1px], [16, 2px]]
             major_road:
                 filter: { kind: major_road }
                 draw:
                     lines:
-                        color: [[5, global.light_color], [7, global.mid_color]]
+                        color: [0.410,0.260,0.201]
                         width: [[5, 0.25px], [7, 0.5px]]
                         # outline:
                         #     width: [[8, 0.0px], [9, 0.0px], [11, .5px], [16, .75px]]
@@ -406,7 +395,7 @@ layers:
                 filter: { kind: minor_road }
                 draw:
                     lines:
-                        color: global.offwhite_color
+                        color: [0.410,0.260,0.201]
                         width: 0.5px
                         # outline:
                         #     width: [[12, 0px], [14, .5px], [17, 1px]]
@@ -425,17 +414,17 @@ layers:
                 lines:
                     # style: lines-datastream
                     style: lines-pixelate
-                    color: [1.000,0.783,0.000]
+                    color: [0.410,0.260,0.201]
                     width: [[8, 1px], [13, 1.25px], [14, 0.1px], [15, 1.5px], [17, 8px], [18, 10m]]
                     outline:
-                        color: [1.000,1.000,0.000]
+                        color: [0.000,0.000,0.000]
                         width: [[8, 0px], [13, 0px], [14, 1px], [15, 2px], [19, 6px]]
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         style: lines-pixelate
-                        color: [0.000,0.000,1.000]
+                        color: [0.410,0.260,0.201]
                         width: [[9, 0px], [13, 0.75px], [14, 0.1px], [17, 4px], [18, 5m]]
                         outline:
                             color: [0.000,0.000,0.000]
@@ -445,20 +434,20 @@ layers:
                     draw:
                         lines:
                             order: 352
-                tunnel-link:
-                    filter: {is_tunnel: true, $zoom: { min: 13 } }
-                    draw:
-                        lines:
-                            color: [[13, global.light_color], [14, global.ultralight_color]]
-                            outline:
-                                color: [[12, global.white_color], [13, global.light_color]]
-            tunnel:
-                filter: { is_tunnel: true, $zoom: { min: 13 } }
-                draw:
-                    lines:
-                        color: [[13, global.light_color], [14, global.ultralight_color]]
-                        outline:
-                            color: [[12, global.white_color], [13, global.light_color]]
+                # tunnel-link:
+                #     filter: {is_tunnel: true, $zoom: { min: 13 } }
+                #     draw:
+                #         lines:
+                #             color: [[13, global.light_color], [14, global.ultralight_color]]
+                #             outline:
+                #                 color: [[12, global.white_color], [13, global.light_color]]
+            # tunnel:
+            #     filter: { is_tunnel: true, $zoom: { min: 13 } }
+            #     draw:
+            #         lines:
+            #             color: [[13, global.light_color], [14, global.ultralight_color]]
+            #             outline:
+            #                 color: [[12, global.white_color], [13, global.light_color]]
             highway_bridge:
                 filter: { is_bridge: true }
                 draw:
@@ -466,18 +455,18 @@ layers:
                         cap: round
                         outline:
                             cap: butt
-            labels-highway-z14:
-                filter: { $zoom: { min: 14 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        text_source: global.ux_language_text_source
-                        visible: true
-                        font:
-                            family: Aldrich
-                            fill: [1.000,0.783,0.000]
-                            size: [[15,12px],[20,14px]]
-                            stroke: { color: [0.000,0.000,1.000], width: 6px }
+            # labels-highway-z14:
+            #     filter: { $zoom: { min: 14 } }
+            #     draw:
+            #         text-blend-order:
+            #             priority: 50
+            #             text_source: global.ux_language_text_source
+            #             visible: true
+            #             font:
+            #                 family: Aldrich
+            #                 fill: [1.000,0.783,0.000]
+            #                 size: [[15,12px],[20,14px]]
+            #                 stroke: { color: [0.000,0.000,1.000], width: 6px }
 
         major_road:
             filter: { kind: major_road, $zoom: { min: 8 } }
@@ -486,20 +475,20 @@ layers:
                 lines:
                     style: lines-pixelate
                     # color: [0.000,0.367,1.000]
-                    color: [0.350,0.000,1.000]
+                    color: [0.410,0.260,0.201]
                     width: [[13, 1px], [14, 1px], [16, 2.5px], [17, 3px]]
                     outline:
-                        color: [0.000,0.183,1.000]
+                        color: [0.000,0.000,0.000]
                         width: [[12, 0px], [13, 0.5px], [15, 1px], [17, 2px]]
             trunk_primary:
                 filter: { kind_detail: [trunk, primary] }
                 draw:
                     lines:
                         # color: [0.000,0.367,1.000]
-                        color: [0.500,0.000,1.000]
+                        color: [0.410,0.260,0.201]
                         width: [[8, 0.5px], [11, 0.5px], [13, 1px], [14, 0.1px], [16, 2px], [17, 8px], [18, 10m]]
                         outline:
-                            color: [0.000,0.183,1.000]
+                            color: [0.000,0.000,0.000]
                             width: [[8, 0px], [13, 0px], [14, 0.75px], [16, 1.5px], [18, 4px]]
                 early:
                     filter: { $zoom: { max: 16 } }
@@ -519,10 +508,10 @@ layers:
                     draw:
                         lines:
                             style: lines-pixelate
-                            color: [1.000,0.783,0.000]
+                            color: [0.410,0.260,0.201]
                             width: [[9, 0.5px], [13, 1px], [14, 0.1px], [15, 1.25px], [16, 2px], [17, 8px], [18, 10m]]
                             outline:
-                                color: [1.000,1.000,0.000]
+                                color: [0.000,0.000,0.000]
                                 width: [[8, 0px], [13, 0px], [14, 0.75px], [15, 1.5px], [17, 3px], [18, 4px]]
                     early:
                         filter: { $zoom: { max: 16 } }
@@ -531,25 +520,25 @@ layers:
                                 order: function() { return feature.sort_rank + 2; }
                                 outline:
                                     order: 353
-                    tunnel:
-                        filter: { is_tunnel: true, $zoom: { min: 13 } }
-                        draw:
-                            lines:
-                                color: [[13, global.light_color], [14, global.ultralight_color]]
-                                outline:
-                                    color: [[12, global.white_color], [13, global.light_color]]
-                    labels-trunk_primary-route-z14:
-                        filter: { $zoom: { min: 14 } }
-                        draw:
-                            text-blend-order:
-                                priority: 51
-                                visible: true
-                                text_source: global.ux_language_text_source_road_ref_and_name
-                                font:
-                                    family: Aldrich
-                                    fill: [0.000,0.500,1.000]
-                                    size: [[15,12px],[20,14px]]
-                                    # stroke: { color: [1.000,0.783,0.000], width: 4px }
+                    # tunnel:
+                    #     filter: { is_tunnel: true, $zoom: { min: 13 } }
+                    #     draw:
+                    #         lines:
+                    #             color: [[13, global.light_color], [14, global.ultralight_color]]
+                    #             outline:
+                    #                 color: [[12, global.white_color], [13, global.light_color]]
+                    # labels-trunk_primary-route-z14:
+                    #     filter: { $zoom: { min: 14 } }
+                    #     draw:
+                    #         text-blend-order:
+                    #             priority: 51
+                    #             visible: true
+                    #             text_source: global.ux_language_text_source_road_ref_and_name
+                    #             font:
+                    #                 family: Aldrich
+                    #                 fill: [0.000,0.500,1.000]
+                    #                 size: [[15,12px],[20,14px]]
+                    #                 # stroke: { color: [1.000,0.783,0.000], width: 4px }
             #     labels-trunk-primary-z14:
             #         filter: { $zoom: 14 }
             #         draw:
@@ -1431,7 +1420,7 @@ styles:
                     - [0.100,0.066,0.049] # lower-left
                     - [0.100,0.066,0.049] # lower-right
                     - [0.100,0.066,0.049] # upper-left
-                    - [0.210,0.193,0.550] # upper-right
+                    - [0.226,0.209,0.550] # upper-right
 
     grid-gradient-hospital-bldgs:
         base: polygons
