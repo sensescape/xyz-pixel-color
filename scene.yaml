@@ -146,43 +146,57 @@ layers:
 
     water:
         data: { source: mapzen, layer: water }
-        draw:
-            polygons:
-                style: grid-gradient-water
-                order: global.feature_order
-                color: [0.980,0.980,0.980]
+        # draw:
+        #     polygons:
+        #         style: grid-gradient-water
+        #         order: global.feature_order
+        #         color: [0.980,0.980,0.980]
 
         lakes:
-            filter:
-                all:
-                    - kind: [ocean, lake, water, riverbank, reservoir, swimming_pool]
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: [1],  area: { min: 10000000000 } }
-                    - { $zoom: [2],  area: { min: 7000000000 } }
-                    # some weird natural earth scale set transition
-                    - { $zoom: [3],  area: { min: 5000000000 } }
-                    - { $zoom: [4],  area: { min: 300000000 } }
-                    - { $zoom: [5],  area: { min: 50000000 } }
-                    - { $zoom: [6],  area: { min: 50000000 } }
-                    - { $zoom: [7],  area: { min: 50000000 } }
-                    - { $zoom: [8],  area: { min: 50000000 } }
-                    - { $zoom: [9],  area: { min: 15000000 } }
-                    - { $zoom: [10], area: { min: 4000000 } }
-                    - { $zoom: [11], area: { min: 1000000 } }
-                    - { $zoom: [12], area: { min: 250000 } }
-                    - { $zoom: [13], area: { min: 150000 } }
-                    - { $zoom: [14], area: { min: 40000 } }
-                    - { $zoom: { min: 15 } }
+            filter: { kind: [lake, water, riverbank], $zoom, { min: 4 }}
             draw:
                 polygons:
-                    color: [0.980,0.980,0.980]
+                    style: grid-gradient-lakes
+                    order: global.feature_order
 
-        other-water-areas:
-            filter: { not: { kind: [ocean, lake, water, reservoir] }, $zoom: { min: 11 }, area: { min: 100 } }
+        oceans:
+            filter: { kind: ocean }
             draw:
                 polygons:
-                    color: [0.980,0.980,0.980]
+                    style: grid-gradient-water
+                    order: global.feature_order
+
+        # lakes:
+        #     filter:
+        #         all:
+        #             - kind: [ocean, lake, water, riverbank, reservoir, swimming_pool]
+        #         any:
+        #             # limit show smaller landuse areas to higher zooms
+        #             - { $zoom: [1],  area: { min: 10000000000 } }
+        #             - { $zoom: [2],  area: { min: 7000000000 } }
+        #             # some weird natural earth scale set transition
+        #             - { $zoom: [3],  area: { min: 5000000000 } }
+        #             - { $zoom: [4],  area: { min: 300000000 } }
+        #             - { $zoom: [5],  area: { min: 50000000 } }
+        #             - { $zoom: [6],  area: { min: 50000000 } }
+        #             - { $zoom: [7],  area: { min: 50000000 } }
+        #             - { $zoom: [8],  area: { min: 50000000 } }
+        #             - { $zoom: [9],  area: { min: 15000000 } }
+        #             - { $zoom: [10], area: { min: 4000000 } }
+        #             - { $zoom: [11], area: { min: 1000000 } }
+        #             - { $zoom: [12], area: { min: 250000 } }
+        #             - { $zoom: [13], area: { min: 150000 } }
+        #             - { $zoom: [14], area: { min: 40000 } }
+        #             - { $zoom: { min: 15 } }
+        #     draw:
+        #         polygons:
+        #             color: [0.980,0.980,0.980]
+
+        # other-water-areas:
+        #     filter: { not: { kind: [ocean, lake, water, reservoir] }, $zoom: { min: 11 }, area: { min: 100 } }
+        #     draw:
+        #         polygons:
+        #             color: [0.980,0.980,0.980]
 
     landuse:
         data: { source: mapzen }
@@ -216,37 +230,37 @@ layers:
                         color: [0.960,0.960,0.960]
                         visible: true
 
-        conservation:
-            filter:
-                $zoom: { min: 4 }
-                kind: [protected_area, nature_reserve, national_park]
-                not: { protect_class: ['2','3','5']}
-            draw:
-                polygons:
-                    style: grid-gradient-green
-                    color: [0.960,0.960,0.960]
-                    visible: true
+        # conservation:
+        #     filter:
+        #         $zoom: { min: 4 }
+        #         kind: [protected_area, nature_reserve, national_park]
+        #         not: { protect_class: ['2','3','5']}
+        #     draw:
+        #         polygons:
+        #             style: grid-gradient-green
+        #             color: [0.960,0.960,0.960]
+        #             visible: true
 
-        national_forest_level_6:
-            filter:
-                all:
-                    - kind: forest
-                any:
-                    - protect_class: ['6']
-                    - operator: ['United States Forest Service']
-            draw:
-                polygons:
-                    style: grid-gradient-green
-                    color: [0.960,0.960,0.960]
-                    visible: true
+        # national_forest_level_6:
+        #     filter:
+        #         all:
+        #             - kind: forest
+        #         any:
+        #             - protect_class: ['6']
+        #             - operator: ['United States Forest Service']
+        #     draw:
+        #         polygons:
+        #             style: grid-gradient-green
+        #             color: [0.960,0.960,0.960]
+        #             visible: true
         
-        forest-landcover:
-            filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
-            draw:
-                polygons:
-                    style: grid-gradient-green
-                    color: [0.960,0.960,0.960]
-                    visible: true
+        # forest-landcover:
+        #     filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
+        #     draw:
+        #         polygons:
+        #             style: grid-gradient-green
+        #             color: [0.960,0.960,0.960]
+        #             visible: true
 
         parks-and-national-forests-not-national-park:
             filter:
@@ -259,7 +273,7 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: grid-gradient-green
+                    style: grid-gradient-parks
                     color: [0.960,0.960,0.960]
                     visible: true
             national_park:
@@ -300,14 +314,14 @@ layers:
         #             color: global.light_color
         #             visible: true
 
-        # beach:
-        #     filter:
-        #         kind: beach
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-beach
-        #             color: global.light_color
-        #             visible: true
+        beach:
+            filter:
+                kind: beach
+            draw:
+                polygons:
+                    style: grid-gradient-beach
+                    color: global.light_color
+                    visible: true
 
         # # university:
         # #     filter:
@@ -331,7 +345,7 @@ layers:
 
     roads:
         data: { source: mapzen, layer: roads }
-        enabled: true
+        enabled: false
         draw:
             lines:
                 visible: true
@@ -893,19 +907,19 @@ layers:
                     visible: true
                     style: grid-gradient-buildings
 
-        in_university:
-            filter: { landuse_kind: [university,school] }
-            draw:
-                polygons:
-                    visible: true
-                    style: grid-gradient-university-bldgs
+        # in_university:
+        #     filter: { landuse_kind: [university,school] }
+        #     draw:
+        #         polygons:
+        #             visible: true
+        #             style: grid-gradient-university-bldgs
 
-        in_hosptal:
-            filter: { landuse_kind: hospital }
-            draw:
-                polygons:
-                    visible: true
-                    style: grid-gradient-hospital-bldgs
+        # in_hosptal:
+        #     filter: { landuse_kind: hospital }
+        #     draw:
+        #         polygons:
+        #             visible: true
+        #             style: grid-gradient-hospital-bldgs
 
         # in_retail:
         #     filter: { landuse_kind: retail }
@@ -1053,7 +1067,7 @@ layers:
                 buffer: 3px
                 font:
                     family: global.text_font_family
-                    fill: [0.600,0.600,0.000]
+                    fill: [0.620,0.591,0.496]
             # END NOTE
 
         populated-places:
@@ -1208,63 +1222,63 @@ layers:
                         font:
                             size: [[9, 10px], [14, 11px], [15, 0px]]
 
-        neighbourhoods:
-            filter:
-                all:
-                    - kind:
-                        - borough
-                        - macrohood
-                        - neighbourhood
-                        #- microhood       # until Tenderloin microhoods are cleaned up, ban this placetype
-                    - $zoom: { min: 10, max: 17 }
-                    - is_landuse_aoi: false
-                    - function() { return (feature.min_zoom <= ($zoom+0.5) && feature.max_zoom >= ($zoom+1)) }
-            draw:
-                text-blend-order:
-                    visible: true
-                    priority: 29
-                    buffer: 8px
-                    text_wrap: 10
-                    max_lines: 2
-                    font:
-                        fill: [0.350,0.000,1.000]
-                        size: [[11, 9px], [12, 10px], [13, 12px], [14, 16px], [16, 24px]]
-                        weight: normal
-                        transform: uppercase
-                        stroke: { color: [0.000,0.000,0.000], width: [[12, 4px], [13, 6px], [15, 8px]] }
+        # neighbourhoods:
+        #     filter:
+        #         all:
+        #             - kind:
+        #                 - borough
+        #                 - macrohood
+        #                 - neighbourhood
+        #                 #- microhood       # until Tenderloin microhoods are cleaned up, ban this placetype
+        #             - $zoom: { min: 10, max: 17 }
+        #             - is_landuse_aoi: false
+        #             - function() { return (feature.min_zoom <= ($zoom+0.5) && feature.max_zoom >= ($zoom+1)) }
+        #     draw:
+        #         text-blend-order:
+        #             visible: true
+        #             priority: 29
+        #             buffer: 8px
+        #             text_wrap: 10
+        #             max_lines: 2
+        #             font:
+        #                 fill: [0.350,0.000,1.000]
+        #                 size: [[11, 9px], [12, 10px], [13, 12px], [14, 16px], [16, 24px]]
+        #                 weight: normal
+        #                 transform: uppercase
+        #                 stroke: { color: [0.000,0.000,0.000], width: [[12, 4px], [13, 6px], [15, 8px]] }
 
-            z13-up:
-                filter:
-                    $zoom: { min: 13 }
-                draw:
-                    text-blend-order:
-                        font:
-                            weight: 300
+        #     z13-up:
+        #         filter:
+        #             $zoom: { min: 13 }
+        #         draw:
+        #             text-blend-order:
+        #                 font:
+        #                     weight: 300
 
-                low_quality_kind_tile_rank:
-                    filter:
-                        kind_tile_rank: { min: 8 }
-                    draw:
-                        text-blend-order:
-                            visible: false
+        #         low_quality_kind_tile_rank:
+        #             filter:
+        #                 kind_tile_rank: { min: 8 }
+        #             draw:
+        #                 text-blend-order:
+        #                     visible: false
 
-                z14-up:
-                    filter:
-                        $zoom: { min: 14 }
-                    draw:
-                        text-blend-order:
-                            text_wrap: 9
-                            visible: true
+        #         z14-up:
+        #             filter:
+        #                 $zoom: { min: 14 }
+        #             draw:
+        #                 text-blend-order:
+        #                     text_wrap: 9
+        #                     visible: true
 
-                    z15-up:
-                        filter:
-                            $zoom: { min: 15 }
-                            min_zoom: { min: 15 }
-                        draw:
-                            text-blend-order:
-                                priority: 19
-                                font:
-                                    size: 13px
+        #             z15-up:
+        #                 filter:
+        #                     $zoom: { min: 15 }
+        #                     min_zoom: { min: 15 }
+        #                 draw:
+        #                     text-blend-order:
+        #                         priority: 19
+        #                         font:
+        #                             size: 13px
 
 styles:
     text-blend-order:
@@ -1286,47 +1300,73 @@ styles:
 
     grid-gradient-earth:
         base: polygons
-        mix: [grid-gradient]
+        mix: [8grid-gradient]
         shaders:
             uniforms:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
-                    - [0.070,0.070,0.170] # upper-left
+                    - [0.270,0.178,0.132] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
     grid-gradient-water:
         base: polygons
-        mix: [grid-gradient]
+        mix: [4grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.010,0.010,0.060] # lower-left
-                    - [0.050,0.040,0.600] # lower-right
-                    - [0.010,0.010,0.060] # upper-left
-                    - [0.010,0.010,0.060] # upper-right
+                    - [0.000,0.000,0.000] # lower-left
+                    - [0.000,0.514,0.670]
+                    # - [0.050,0.040,0.600] # lower-right
+                    - [0.000,0.000,0.000] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
+
+    grid-gradient-lakes:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.000,0.000,0.000] # lower-left
+                    - [0.000,0.514,0.670]
+                    # - [0.050,0.040,0.600] # lower-right
+                    - [0.000,0.000,0.000] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
+
 
     grid-gradient-buildings:
         base: polygons
-        mix: [grid-gradient]
+        mix: [20grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.100,0.079,0.068] # lower-left
+                    - [0.100,0.079,0.068] # lower-right
+                    - [0.100,0.079,0.068] # upper-left
+                    - [0.520,0.442,0.411]
+                    # - [0.410,0.260,0.201] # upper-right
+
+    grid-gradient-green:
+        base: polygons
+        mix: [12grid-gradient]
         shaders:
             uniforms:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
-                    - [0.000,0.000,0.000] # upper-left
-                    - [0.350,0.000,0.700] # upper-right
+                    - [0.000,0.440,0.411] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
 
-    grid-gradient-green:
+    grid-gradient-parks:
         base: polygons
-        mix: [grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.000,0.250,0.100] # lower-left
-                    - [0.000,0.000,0.000] # lower-right
-                    - [0.000,0.000,0.000] # upper-left
-                    - [0.000,0.000,0.000] # upper-right
+                    - [0.050,0.033,0.025] # lower-left
+                    - [0.050,0.033,0.025] # lower-right
+                    - [0.000,0.342,0.380] # upper-left
+                    - [0.050,0.033,0.025] # upper-right
 
     grid-gradient-garden:
         base: polygons
@@ -1363,14 +1403,14 @@ styles:
 
     grid-gradient-beach:
         base: polygons
-        mix: [grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [1.000,0.916,0.540] # lower-left
-                    - [0.960,0.960,0.960] # lower-right
-                    - [0.990,0.990,0.990] # upper-left
-                    - [0.962,0.962,0.962] # upper-right
+                    - [0.050,0.033,0.025] # lower-left
+                    - [0.050,0.033,0.025] # lower-right
+                    - [0.050,0.033,0.025] # upper-left
+                    - [0.610,0.485,0.073] # upper-right
 
     grid-gradient-golf:
         base: polygons
@@ -1416,7 +1456,70 @@ styles:
                     - [0.870,0.848,0.827] # upper-left
                     - [1.000,0.942,0.750] # upper-right
 
-    grid-gradient:
+    4grid-gradient:
+        base: polygons
+        mix: [space-tile]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 4
+            blocks:
+                color: |
+                    vec2 st = getTileCoords();
+                    vec2 f_st = fract(st * u_grid_size);
+                    color.rgb = mix(
+                        mix(u_colors[0], u_colors[1], f_st.x),
+                        mix(u_colors[2], u_colors[3], f_st.x),
+                        f_st.y
+                    );
+
+    8grid-gradient:
+        base: polygons
+        mix: [space-tile]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 8
+            blocks:
+                color: |
+                    vec2 st = getTileCoords();
+                    vec2 f_st = fract(st * u_grid_size);
+                    color.rgb = mix(
+                        mix(u_colors[0], u_colors[1], f_st.x),
+                        mix(u_colors[2], u_colors[3], f_st.x),
+                        f_st.y
+                    );
+
+    12grid-gradient:
+        base: polygons
+        mix: [space-tile]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 12
+            blocks:
+                color: |
+                    vec2 st = getTileCoords();
+                    vec2 f_st = fract(st * u_grid_size);
+                    color.rgb = mix(
+                        mix(u_colors[0], u_colors[1], f_st.x),
+                        mix(u_colors[2], u_colors[3], f_st.x),
+                        f_st.y
+                    );
+
+    16grid-gradient:
         base: polygons
         mix: [space-tile]
         shaders:
@@ -1427,6 +1530,27 @@ styles:
                     - [0.680,0.569,0.544] # upper-left
                     - [0.902,0.902,0.902] # upper-right
                 u_grid_size: 16
+            blocks:
+                color: |
+                    vec2 st = getTileCoords();
+                    vec2 f_st = fract(st * u_grid_size);
+                    color.rgb = mix(
+                        mix(u_colors[0], u_colors[1], f_st.x),
+                        mix(u_colors[2], u_colors[3], f_st.x),
+                        f_st.y
+                    );
+
+    20grid-gradient:
+        base: polygons
+        mix: [space-tile]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 20
             blocks:
                 color: |
                     vec2 st = getTileCoords();
