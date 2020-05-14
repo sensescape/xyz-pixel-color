@@ -1352,7 +1352,7 @@ styles:
 
     grid-gradient-buildings:
         base: polygons
-        mix: [20grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1364,7 +1364,7 @@ styles:
 
     grid-gradient-green:
         base: polygons
-        mix: [12grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1474,7 +1474,7 @@ styles:
 
     grid-gradient-university-bldgs:
         base: polygons
-        mix: [20grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1485,7 +1485,7 @@ styles:
 
     grid-gradient-hospital-bldgs:
         base: polygons
-        mix: [20grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1547,27 +1547,6 @@ styles:
                         f_st.y
                     );
 
-    12grid-gradient:
-        base: polygons
-        mix: [space-tile]
-        shaders:
-            uniforms:
-                u_colors:
-                    - [0.870,0.870,0.870] # lower-left
-                    - [0.890,0.890,0.890] # lower-right
-                    - [0.680,0.569,0.544] # upper-left
-                    - [0.902,0.902,0.902] # upper-right
-                u_grid_size: 12
-            blocks:
-                color: |
-                    vec2 st = getTileCoords();
-                    vec2 f_st = fract(st * u_grid_size);
-                    color.rgb = mix(
-                        mix(u_colors[0], u_colors[1], f_st.x),
-                        mix(u_colors[2], u_colors[3], f_st.x),
-                        f_st.y
-                    );
-
     16grid-gradient:
         base: polygons
         mix: [space-tile]
@@ -1579,48 +1558,6 @@ styles:
                     - [0.680,0.569,0.544] # upper-left
                     - [0.902,0.902,0.902] # upper-right
                 u_grid_size: 16
-            blocks:
-                color: |
-                    vec2 st = getTileCoords();
-                    vec2 f_st = fract(st * u_grid_size);
-                    color.rgb = mix(
-                        mix(u_colors[0], u_colors[1], f_st.x),
-                        mix(u_colors[2], u_colors[3], f_st.x),
-                        f_st.y
-                    );
-
-    20grid-gradient:
-        base: polygons
-        mix: [space-tile]
-        shaders:
-            uniforms:
-                u_colors:
-                    - [0.870,0.870,0.870] # lower-left
-                    - [0.890,0.890,0.890] # lower-right
-                    - [0.680,0.569,0.544] # upper-left
-                    - [0.902,0.902,0.902] # upper-right
-                u_grid_size: 20
-            blocks:
-                color: |
-                    vec2 st = getTileCoords();
-                    vec2 f_st = fract(st * u_grid_size);
-                    color.rgb = mix(
-                        mix(u_colors[0], u_colors[1], f_st.x),
-                        mix(u_colors[2], u_colors[3], f_st.x),
-                        f_st.y
-                    );
-
-    24grid-gradient:
-        base: polygons
-        mix: [space-tile]
-        shaders:
-            uniforms:
-                u_colors:
-                    - [0.870,0.870,0.870] # lower-left
-                    - [0.890,0.890,0.890] # lower-right
-                    - [0.680,0.569,0.544] # upper-left
-                    - [0.902,0.902,0.902] # upper-right
-                u_grid_size: 24
             blocks:
                 color: |
                     vec2 st = getTileCoords();
