@@ -296,23 +296,21 @@ layers:
         #             color: global.light_color
         #             visible: true
 
-        # university:
-        #     filter:
-        #         kind: [university, college]
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-university
-        #             color: global.lightest_color
-        #             visible: true
+        university:
+            filter:
+                kind: [university, college]
+            draw:
+                polygons:
+                    style: grid-gradient-university
+                    visible: true
 
-        # garden:
-        #     filter:
-        #         kind: garden
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-garden
-        #             color: global.light_color
-        #             visible: true
+        garden:
+            filter:
+                kind: garden
+            draw:
+                polygons:
+                    style: grid-gradient-garden
+                    visible: true
 
         beach:
             filter:
@@ -907,19 +905,19 @@ layers:
                     visible: true
                     style: grid-gradient-buildings
 
-        # in_university:
-        #     filter: { landuse_kind: [university,school] }
-        #     draw:
-        #         polygons:
-        #             visible: true
-        #             style: grid-gradient-university-bldgs
+        in_university:
+            filter: { landuse_kind: [university,school] }
+            draw:
+                polygons:
+                    visible: true
+                    style: grid-gradient-university-bldgs
 
-        # in_hosptal:
-        #     filter: { landuse_kind: hospital }
-        #     draw:
-        #         polygons:
-        #             visible: true
-        #             style: grid-gradient-hospital-bldgs
+        in_hosptal:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    visible: true
+                    style: grid-gradient-hospital-bldgs
 
         # in_retail:
         #     filter: { landuse_kind: retail }
@@ -1306,7 +1304,8 @@ styles:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
-                    - [0.270,0.178,0.132] # upper-left
+                    - [0.190,0.143,0.120]
+                    # - [0.270,0.178,0.132] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
     grid-gradient-water:
@@ -1340,10 +1339,10 @@ styles:
         shaders:
             uniforms:
                 u_colors:
-                    - [0.100,0.079,0.068] # lower-left
-                    - [0.100,0.079,0.068] # lower-right
-                    - [0.100,0.079,0.068] # upper-left
-                    - [0.520,0.442,0.411]
+                    - [0.080,0.069,0.063] # lower-left
+                    - [0.080,0.069,0.063] # lower-right
+                    - [0.080,0.069,0.063] # upper-left
+                    - [0.430,0.399,0.387]
                     # - [0.410,0.260,0.201] # upper-right
 
     grid-gradient-green:
@@ -1370,14 +1369,14 @@ styles:
 
     grid-gradient-garden:
         base: polygons
-        mix: [grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.443,0.750,0.576] # lower-left
-                    - [0.890,0.890,0.890] # lower-right
-                    - [0.920,0.920,0.920] # upper-left
-                    - [0.952,0.952,0.952] # upper-right
+                    - [0.050,0.033,0.025] # lower-left
+                    - [0.036,0.510,0.455] # lower-right
+                    - [0.050,0.033,0.025] # upper-left
+                    - [0.050,0.033,0.025] # upper-right
 
     grid-gradient-farm:
         base: polygons
@@ -1392,25 +1391,25 @@ styles:
 
     grid-gradient-university:
         base: polygons
-        mix: [grid-gradient]
-        shaders:
-            uniforms:
-                u_colors:
-                    - [0.910,0.871,0.855] # lower-left
-                    - [0.980,0.930,0.764] # lower-right
-                    - [0.920,0.920,0.920] # upper-left
-                    - [0.980,0.950,0.902] # upper-right
-
-    grid-gradient-beach:
-        base: polygons
-        mix: [16grid-gradient]
+        mix: [8grid-gradient]
         shaders:
             uniforms:
                 u_colors:
                     - [0.050,0.033,0.025] # lower-left
                     - [0.050,0.033,0.025] # lower-right
-                    - [0.050,0.033,0.025] # upper-left
-                    - [0.610,0.485,0.073] # upper-right
+                    - [0.150,0.163,0.230] # upper-left
+                    - [0.050,0.033,0.025] # upper-right
+
+    grid-gradient-beach:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.050,0.033,0.025] # lower-left
+                    - [0.050,0.033,0.025] # lower-right
+                    - [0.490,0.484,0.309] # upper-left
+                    - [0.050,0.033,0.025] # upper-right
 
     grid-gradient-golf:
         base: polygons
@@ -1425,25 +1424,25 @@ styles:
 
     grid-gradient-university-bldgs:
         base: polygons
-        mix: [grid-gradient]
+        mix: [20grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.000,0.000,0.000] # lower-left
-                    - [1.000,0.933,0.000] # lower-right
-                    - [0.000,0.000,0.000] # upper-left
-                    - [0.000,0.000,0.000] # upper-right
+                    - [0.100,0.066,0.049] # lower-left
+                    - [0.100,0.066,0.049] # lower-right
+                    - [0.100,0.066,0.049] # upper-left
+                    - [0.210,0.193,0.550] # upper-right
 
     grid-gradient-hospital-bldgs:
         base: polygons
-        mix: [grid-gradient]
+        mix: [20grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [1.000,0.000,0.000] # lower-left
-                    - [0.000,0.000,0.000] # lower-right
-                    - [0.000,0.000,0.000] # upper-left
-                    - [0.000,0.000,0.000] # upper-right
+                    - [0.100,0.066,0.049] # lower-left
+                    - [0.100,0.066,0.049] # lower-right
+                    - [0.100,0.066,0.049] # upper-left
+                    - [0.590,0.100,0.329] # upper-right
 
     grid-gradient-retail-bldgs:
         base: polygons
@@ -1551,6 +1550,27 @@ styles:
                     - [0.680,0.569,0.544] # upper-left
                     - [0.902,0.902,0.902] # upper-right
                 u_grid_size: 20
+            blocks:
+                color: |
+                    vec2 st = getTileCoords();
+                    vec2 f_st = fract(st * u_grid_size);
+                    color.rgb = mix(
+                        mix(u_colors[0], u_colors[1], f_st.x),
+                        mix(u_colors[2], u_colors[3], f_st.x),
+                        f_st.y
+                    );
+
+    24grid-gradient:
+        base: polygons
+        mix: [space-tile]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.870,0.870,0.870] # lower-left
+                    - [0.890,0.890,0.890] # lower-right
+                    - [0.680,0.569,0.544] # upper-left
+                    - [0.902,0.902,0.902] # upper-right
+                u_grid_size: 24
             blocks:
                 color: |
                     vec2 st = getTileCoords();
