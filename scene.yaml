@@ -1315,13 +1315,14 @@ styles:
 
     grid-gradient-earth:
         base: polygons
-        mix: [8grid-gradient]
+        mix: [4grid-gradient]
         shaders:
             uniforms:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
-                    - [0.190,0.143,0.120]
+                    - [0.140,0.114,0.101]
+                    # - [0.190,0.143,0.120]
                     # - [0.270,0.178,0.132] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
@@ -1339,7 +1340,7 @@ styles:
 
     grid-gradient-lakes:
         base: polygons
-        mix: [8grid-gradient]
+        mix: [4grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1375,7 +1376,7 @@ styles:
 
     grid-gradient-parks:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [8grid-gradient]
         shaders:
             uniforms:
                 u_colors:
