@@ -175,16 +175,15 @@ layers:
                         style: grid-gradient-green
                         visible: true
 
-        # conservation:
-        #     filter:
-        #         $zoom: { min: 4 }
-        #         kind: [protected_area, nature_reserve, national_park]
-        #         not: { protect_class: ['2','3','5']}
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-green
-        #             color: [0.960,0.960,0.960]
-        #             visible: true
+        conservation:
+            filter:
+                $zoom: { min: 4 }
+                kind: [protected_area, nature_reserve, national_park]
+                not: { protect_class: ['2','3','5']}
+            draw:
+                polygons:
+                    style: grid-gradient-conservation
+                    visible: true
 
         national_forest_level_6:
             filter:
@@ -1210,6 +1209,17 @@ styles:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
                     - [0.000,0.440,0.411] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
+
+    grid-gradient-conservation:
+        base: polygons
+        mix: [16grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.000,0.000,0.000] # lower-left
+                    - [0.000,0.243,0.260] # lower-right
+                    - [0.000,0.000,0.000] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
     grid-gradient-forest:
