@@ -420,10 +420,10 @@ layers:
                     lines:
                         style: lines-pixelate
                         color: [0.410,0.260,0.201]
-                        width: [[9, 0px], [13, 0.75px], [14, 0.1px], [17, 4px], [18, 5m]]
+                        width: [[9, 0px], [13, 0.75px], [17, 4px], [18, 5m]]
                         outline:
                             color: [0.000,0.000,0.000]
-                            width: [[9, 0px], [13, 0px], [14, 0.4px], [17, 1.5px], [18, 2px]]
+                            width: [[9, 0px], [12, 0.5px], [17, 1.5px], [18, 2px]]
                 early_link:
                     filter: { $zoom: {min: 13, max: 15} }
                     draw:
@@ -451,58 +451,56 @@ layers:
                         outline:
                             cap: butt
 
-        # major_road:
-        #     filter: { kind: major_road, $zoom: { min: 8 } }
-        #     # default style
-        #     draw:
-        #         lines:
-        #             style: lines-pixelate
-        #             # color: [0.000,0.367,1.000]
-        #             color: [0.410,0.260,0.201]
-        #             width: [[13, 1px], [14, 1px], [16, 2.5px], [17, 3px]]
-        #             outline:
-        #                 color: [0.000,0.000,0.000]
-        #                 width: [[12, 0px], [13, 0.5px], [15, 1px], [17, 2px]]
-        #     trunk_primary:
-        #         filter: { kind_detail: [trunk, primary] }
-        #         draw:
-        #             lines:
-        #                 # color: [0.000,0.367,1.000]
-        #                 color: [0.410,0.260,0.201]
-        #                 width: [[8, 0.5px], [11, 0.5px], [13, 1px], [14, 0.1px], [16, 2px], [17, 8px], [18, 10m]]
-        #                 outline:
-        #                     color: [0.000,0.000,0.000]
-        #                     width: [[8, 0px], [13, 0px], [14, 0.75px], [16, 1.5px], [18, 4px]]
-        #         early:
-        #             filter: { $zoom: { max: 16 } }
-        #             draw:
-        #                 lines:
-        #                     order: 352
-        #                     outline:
-        #                         order: function() { return feature.sort_rank + 2; }
-        #             primary:
-        #                 filter: { kind: [primary] }
-        #                 draw:
-        #                     lines:
-        #                         outline:
-        #                             order: function() { return feature.sort_rank + 1; }
-        #         routes:
-        #             filter: { ref: true }
-        #             draw:
-        #                 lines:
-        #                     style: lines-pixelate
-        #                     color: [0.410,0.260,0.201]
-        #                     width: [[9, 0.5px], [13, 1px], [14, 0.1px], [15, 1.25px], [16, 2px], [17, 8px], [18, 10m]]
-        #                     outline:
-        #                         color: [0.000,0.000,0.000]
-        #                         width: [[8, 0px], [13, 0px], [14, 0.75px], [15, 1.5px], [17, 3px], [18, 4px]]
-        #             early:
-        #                 filter: { $zoom: { max: 16 } }
-        #                 draw:
-        #                     lines:
-        #                         order: function() { return feature.sort_rank + 2; }
-        #                         outline:
-        #                             order: 353
+        major_road:
+            filter: { kind: major_road, $zoom: { min: 8 } }
+            # default style
+            draw:
+                lines:
+                    style: lines-pixelate
+                    color: [[8,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                    width: [[13, 0.5px], [15, 1px], [17, 4px]]
+                    outline:
+                        color: [0.000,0.000,0.000]
+                        width: [[12, 0px], [13, 0.5px], [15, 1px], [17, 2px]]
+            trunk_primary:
+                filter: { kind_detail: [trunk, primary] }
+                draw:
+                    lines:
+                        color: [[8,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                        width: [[8, 0.5px], [11, 0.5px], [13, 1px], [17, 4px], [18, 7m]]
+                        outline:
+                            color: [0.000,0.000,0.000]
+                            width: [[8, 0px], [13, 0px], [14, 1px], [17, 2px], [18, 4px]]
+                early:
+                    filter: { $zoom: { max: 16 } }
+                    draw:
+                        lines:
+                            order: 352
+                            outline:
+                                order: function() { return feature.sort_rank + 2; }
+                    primary:
+                        filter: { kind: [primary] }
+                        draw:
+                            lines:
+                                outline:
+                                    order: function() { return feature.sort_rank + 1; }
+                routes:
+                    filter: { ref: true }
+                    draw:
+                        lines:
+                            style: lines-pixelate
+                            color: [0.410,0.260,0.201]
+                            width: [[9, 0.5px], [13, 1px], [16, 3px], [17, 8px], [18, 10m]]
+                            outline:
+                                color: [0.000,0.000,0.000]
+                                width: [[8, 0px], [13, 0px], [14, 0.75px], [15, 1.5px], [17, 3px], [18, 4px]]
+                    early:
+                        filter: { $zoom: { max: 16 } }
+                        draw:
+                            lines:
+                                order: function() { return feature.sort_rank + 2; }
+                                outline:
+                                    order: 353
                     # tunnel:
                     #     filter: { is_tunnel: true, $zoom: { min: 13 } }
                     #     draw:
@@ -510,15 +508,13 @@ layers:
                     #             color: [[13, global.light_color], [14, global.ultralight_color]]
                     #             outline:
                     #                 color: [[12, global.white_color], [13, global.light_color]]
-            # link:
-            #     filter: { is_link: true } # on- and off-ramps, etc
-            #     draw:
-            #         lines:
-            #             color: [[10, global.mid_color], [15, global.light_color], [16, global.white_color]]
-            #             width: [[10, 0.5px], [12, 0.5px], [15, 1px], [16, 1.75px], [17, 3px], [18, 5m]]
-            #             outline:
-            #                 color: [[10, global.white_color], [15, global.mid_color], [16, global.black_color]]
-            #                 width: [[10, 0px], [15, 0px], [16, 1px], [18, 2px]]
+            link:
+                filter: { is_link: true } # on- and off-ramps, etc
+                draw:
+                    lines:
+                        width: [[10, 0.5px], [12, 0.5px], [15, 1px], [17, 2.5px]]
+                        outline:
+                            width: [[10, 0px], [15, 0px], [16, 1px], [18, 2px]]
             # tunnel:
             #     filter: { is_tunnel: true, $zoom: { min: 13 } }
             #     draw:
@@ -526,123 +522,96 @@ layers:
             #             color: [[13, global.light_color], [14, global.ultralight_color]]
             #             outline:
             #                 color: [[12, global.white_color], [13, global.light_color]]
-        #     secondary:
-        #         filter: { kind_detail: secondary }
-        #         draw:
-        #             lines:
-        #                 color: [[10, global.lighter_color], [13, global.midlight_color], [15, global.dark_color], [16, global.white_color]]
-        #                 width: [[10, 0.5px], [12, 0.5px], [14, 1px], [15, 1.5px], [16, 0.1px], [17, 7.5px], [18, 9m]]
-        #                 outline:
-        #                     color: [[10, global.white_color], [14, global.white_color], [15, global.black_color]]
-        #                     width: [[10, 0px], [15, 0px], [16, 1.1px], [17, 2px]]
-        #         early:
-        #             filter: { $zoom: { max: 16 } }
-        #             draw:
-        #                 lines:
-        #                     order: 352
-        #                     outline:
-        #                         order: 353 #function() { return feature.sort_rank + 2; }
-        #         routes:
-        #             filter: { ref: true, $zoom: { min: 12 } }
-        #             draw:
-        #                 lines:
-        #                     color: [[10, global.lighter_color], [13, global.mid_color], [15, global.black_color], [16, global.white_color]]
-        #                     width: [[10, 0.5px], [13, 1px], [15, 1.5px], [16, 0.1px], [17, 7.5px], [18, 9m]]
-        #                     outline:
-        #                         color: [[10, global.white_color], [14, global.white_color], [15, global.black_color]]
-        #                         width: [[10, 0px], [15, 0px], [16, 1.5px], [17, 2px]]
-        #             early:
-        #                 filter: { $zoom: { max: 15 } }
-        #                 draw:
-        #                     lines:
-        #                         order: function() { return feature.sort_rank + 2; }
-        #                         outline:
-        #                             order: 353
-        #             tunnel:
-        #                 filter: {is_tunnel: true, $zoom: { min: 13 } }
-        #                 draw:
-        #                     lines:
-        #                         color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
-        #                         outline:
-        #                             color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
-        #             labels-secondary-routes-z15-up:
-        #                 filter: { $zoom: { min: 15 } }
-        #                 draw:
-        #                     text-blend-order:
-        #                         priority: 56
-        #                         visible: true
-        #                         text_source: global.ux_language_text_source_road_ref_and_name_short
-        #                         font:
-        #                             size: [[13,10px],[15,13px],[18,14px]]
-        #                             stroke: { color: global.roads_text_stroke, width: 4px }
-        #         labels-secondary:
-        #             filter: { $zoom: { min: 15 } }
-        #             draw:
-        #                 text-blend-order:
-        #                     priority: 56
-        #                     visible: true
-        #                     text_source: global.ux_language_text_source_road_ref_and_name_short
-        #                     font:
-        #                         size: [[15,13px],[18,14px]]
-        #                         stroke: { color: global.roads_text_stroke, width: 4px }
-        #     tertiary:
-        #         filter: { kind_detail: [tertiary, tertiary_link] }
-        #         draw:
-        #             lines:
-        #                 color: [[11, global.lighter_color], [15, global.dark_color], [16, global.white_color]]
-        #                 width: [[11, 0.5px], [15, 1.25px], [16, 0.1px], [17, 6px], [18, 9m]]
-        #                 outline:
-        #                     color: [[11, global.white_color], [14, global.white_color], [15, global.black_color]]
-        #                     width: [[11, 0px], [15, 0px], [16, 1px], [17, 2px], [18, 2px]]
-        #         early:
-        #             filter: { $zoom: { max: 15 } }
-        #             draw:
-        #                 lines:
-        #                     order: 352
-        #                     outline:
-        #                         order: function() { return feature.sort_rank + 3; }
-        #         routes:
-        #             filter: { ref: true, $zoom: { min: 12 } }
-        #             draw:
-        #                 lines:
-        #                     color: [[11, global.lighter_color], [15, global.dark_color], [16, global.white_color]]
-        #                     width: [[11, 0.5px], [15, 1.25px], [16, 0.1px], [17, 6px], [18, 9m]]
-        #                     outline:
-        #                         color: [[11, global.white_color], [14, global.white_color], [15, global.black_color]]
-        #                         width: [[11, 0px], [15, 0px], [16, 1px], [17, 2px], [18, 2px]]
-        #             early:
-        #                 filter: { $zoom: { max: 15 } }
-        #                 draw:
-        #                     lines:
-        #                         order: function() { return feature.sort_rank + 3; }
-        #                         outline:
-        #                             order: 353
-        #             tunnel:
-        #                 filter: { is_tunnel: true, $zoom: { min: 13 } }
-        #                 draw:
-        #                     lines:
-        #                         color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
-        #                         outline:
-        #                             color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
-        #         link:
-        #             filter: { is_link: true } # on- and off-ramps, etc
-        #             draw:
-        #                 lines:
-        #                     color: [[14, global.light_color], [15, global.dark_color], [16, global.white_color]]
-        #                     width: [[11, 0.0px], [15, 0.5px], [16, 0.1px], [18, 4.5m]]
-        #                     outline:
-        #                         color: [[11, global.white_color], [14, global.white_color], [15, global.black_color]]
-        #                         width: [[11, 0px], [14, 0px], [16, 0.25px], [18, 2px]]
-        #         labels-tertiary:
-        #             filter: { $zoom: { min: 16 } }
-        #             draw:
-        #                 text-blend-order:
-        #                     priority: 57
-        #                     visible: true
-        #                     text_source: global.ux_language_text_source_road_ref_and_name_short
-        #                     font:
-        #                         size: [[15,10px],[18,14px]]
-        #                         stroke: { color: global.roads_text_stroke, width: 5px }
+            secondary:
+                filter: { kind_detail: secondary }
+                draw:
+                    lines:
+                        # color: red
+                        color: [[10,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                        width: [[10, 0.5px], [12, 0.5px], [16, 1.5px], [17, 4px], [18, 7m]]
+                        outline:
+                            color: [0.000,0.000,0.000]
+                            width: [[10, 0px], [14, 1px], [17, 2px]]
+                early:
+                    filter: { $zoom: { max: 16 } }
+                    draw:
+                        lines:
+                            order: 352
+                            outline:
+                                order: 353 #function() { return feature.sort_rank + 2; }
+                routes:
+                    filter: { ref: true, $zoom: { min: 12 } }
+                    draw:
+                        lines:
+                            color: [[10,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                            width: [[10, 0.5px], [12, 0.5px], [16, 1.5px], [17, 4px], [18, 7m]]
+                            outline:
+                                color: [0.000,0.000,0.000]
+                                width: [[10, 0px], [14, 1px], [17, 2px]]
+                    early:
+                        filter: { $zoom: { max: 15 } }
+                        draw:
+                            lines:
+                                order: function() { return feature.sort_rank + 2; }
+                                outline:
+                                    order: 353
+                #     tunnel:
+                #         filter: {is_tunnel: true, $zoom: { min: 13 } }
+                #         draw:
+                #             lines:
+                #                 color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
+                #                 outline:
+                #                     color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
+            tertiary:
+                filter: { kind_detail: [tertiary, tertiary_link] }
+                draw:
+                    lines:
+                        # color: red
+                        color: [[11,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                        width: [[11, 0.5px], [15, 1.25px], [17, 2.5px], [18, 5m]]
+                        outline:
+                            color: [0.000,0.000,0.000]
+                            width: [[11, 0px], [14, 0.5px], [17, 2px]]
+                early:
+                    filter: { $zoom: { max: 15 } }
+                    draw:
+                        lines:
+                            order: 352
+                            outline:
+                                order: function() { return feature.sort_rank + 3; }
+                # routes:
+                #     filter: { ref: true, $zoom: { min: 12 } }
+                #     draw:
+                #         lines:
+                #             color: [[11,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                #             width: [[11, 0.5px], [15, 1.25px], [17, 2px], [18, 5m]]
+                #             outline:
+                #                 color: [0.000,0.000,0.000]
+                #                 width: [[11, 0px], [14, 0.5px], [17, 2px]]
+                #     early:
+                #         filter: { $zoom: { max: 15 } }
+                #         draw:
+                #             lines:
+                #                 order: function() { return feature.sort_rank + 3; }
+                #                 outline:
+                #                     order: 353
+                #     tunnel:
+                #         filter: { is_tunnel: true, $zoom: { min: 13 } }
+                #         draw:
+                #             lines:
+                #                 color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
+                #                 outline:
+                #                     color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
+                # link:
+                #     filter: { is_link: true } # on- and off-ramps, etc
+                #     draw:
+                #         lines:
+                #             color: [[14, global.light_color], [15, global.dark_color], [16, global.white_color]]
+                #             width: [[11, 0.0px], [15, 0.5px], [16, 0.1px], [18, 4.5m]]
+                #             outline:
+                #                 color: [[11, global.white_color], [14, global.white_color], [15, global.black_color]]
+                #                 width: [[11, 0px], [14, 0px], [16, 0.25px], [18, 2px]]
+
         # minor_road:
         #     filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
         #     draw:
