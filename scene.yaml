@@ -94,15 +94,6 @@ scene:
         color: [0.000,0.000,0.000]
 
 sources:
-    # mapzen:
-    #     type: MVT
-    #     # url:  https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
-    #     url: https://xyz.api.here.com/tiles/osmbase/512/all/{z}/{x}/{y}.mvt
-    #     url_params:
-    #         api_key: JJiaZE63TZObzPrmx0TQkw
-    #     tile_size: 512
-    #     max_zoom: 16
-
     mapzen:
         type: MVT
         url: https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.mvt
@@ -144,24 +135,6 @@ layers:
             filter:
                 all:
                     - kind: [ocean, lake, water, riverbank, reservoir, swimming_pool]
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: [1],  area: { min: 10000000000 } }
-                    - { $zoom: [2],  area: { min: 7000000000 } }
-                    # some weird natural earth scale set transition
-                    - { $zoom: [3],  area: { min: 5000000000 } }
-                    - { $zoom: [4],  area: { min: 300000000 } }
-                    - { $zoom: [5],  area: { min: 50000000 } }
-                    - { $zoom: [6],  area: { min: 50000000 } }
-                    - { $zoom: [7],  area: { min: 50000000 } }
-                    - { $zoom: [8],  area: { min: 50000000 } }
-                    - { $zoom: [9],  area: { min: 15000000 } }
-                    - { $zoom: [10], area: { min: 4000000 } }
-                    - { $zoom: [11], area: { min: 1000000 } }
-                    - { $zoom: [12], area: { min: 250000 } }
-                    - { $zoom: [13], area: { min: 150000 } }
-                    - { $zoom: [14], area: { min: 40000 } }
-                    - { $zoom: { min: 15 } }
             draw:
                 polygons:
                     style: grid-gradient-water
@@ -190,7 +163,6 @@ layers:
             draw:
                 polygons:
                     style: grid-gradient-green
-                    color: [0.960,0.960,0.960]
                     visible: true
             us_national_park:
                 # yosemite national park, death valley national park, grand canyon national park
@@ -201,7 +173,6 @@ layers:
                 draw:
                     polygons:
                         style: grid-gradient-green
-                        color: [0.960,0.960,0.960]
                         visible: true
 
         # conservation:
@@ -215,18 +186,17 @@ layers:
         #             color: [0.960,0.960,0.960]
         #             visible: true
 
-        # national_forest_level_6:
-        #     filter:
-        #         all:
-        #             - kind: forest
-        #         any:
-        #             - protect_class: ['6']
-        #             - operator: ['United States Forest Service']
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-green
-        #             color: [0.960,0.960,0.960]
-        #             visible: true
+        national_forest_level_6:
+            filter:
+                all:
+                    - kind: forest
+                any:
+                    - protect_class: ['6']
+                    - operator: ['United States Forest Service']
+            draw:
+                polygons:
+                    style: grid-gradient-forest
+                    visible: true
         
         # forest-landcover:
         #     filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
@@ -579,22 +549,22 @@ layers:
                             order: 352
                             outline:
                                 order: function() { return feature.sort_rank + 3; }
-                # routes:
-                #     filter: { ref: true, $zoom: { min: 12 } }
-                #     draw:
-                #         lines:
-                #             color: [[11,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
-                #             width: [[11, 0.5px], [15, 1.25px], [17, 2px], [18, 5m]]
-                #             outline:
-                #                 color: [0.000,0.000,0.000]
-                #                 width: [[11, 0px], [14, 0.5px], [17, 2px]]
-                #     early:
-                #         filter: { $zoom: { max: 15 } }
-                #         draw:
-                #             lines:
-                #                 order: function() { return feature.sort_rank + 3; }
-                #                 outline:
-                #                     order: 353
+                routes:
+                    filter: { ref: true, $zoom: { min: 12 } }
+                    draw:
+                        lines:
+                            color: [[11,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
+                            width: [[11, 0.5px], [15, 1.25px], [17, 2px], [18, 5m]]
+                            outline:
+                                color: [0.000,0.000,0.000]
+                                width: [[11, 0px], [14, 0.5px], [17, 2px]]
+                    early:
+                        filter: { $zoom: { max: 15 } }
+                        draw:
+                            lines:
+                                order: function() { return feature.sort_rank + 3; }
+                                outline:
+                                    order: 353
                 #     tunnel:
                 #         filter: { is_tunnel: true, $zoom: { min: 13 } }
                 #         draw:
@@ -1233,13 +1203,24 @@ styles:
 
     grid-gradient-green:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [8grid-gradient]
         shaders:
             uniforms:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
                     - [0.000,0.440,0.411] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
+
+    grid-gradient-forest:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.000,0.000,0.000] # lower-left
+                    - [0.000,0.000,0.000] # lower-right
+                    - [0.171,0.300,0.259] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
     grid-gradient-parks:
