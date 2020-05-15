@@ -1345,7 +1345,7 @@ styles:
 
     grid-gradient-university-bldgs:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1356,7 +1356,7 @@ styles:
 
     grid-gradient-hospital-bldgs:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1367,7 +1367,7 @@ styles:
 
     grid-gradient-retail-bldgs:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1378,7 +1378,7 @@ styles:
 
     grid-gradient-parks-bldgs:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
