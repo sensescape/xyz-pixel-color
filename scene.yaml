@@ -319,6 +319,14 @@ layers:
                     style: grid-gradient-garden
                     visible: true
 
+        playground:
+            filter:
+                kind: playground
+            draw:
+                polygons:
+                    style: grid-gradient-playground
+                    visible: true
+
         beach:
             filter:
                 kind: beach
@@ -1357,10 +1365,10 @@ styles:
         shaders:
             uniforms:
                 u_colors:
-                    - [0.080,0.069,0.063] # lower-left
-                    - [0.080,0.069,0.063] # lower-right
-                    - [0.080,0.069,0.063] # upper-left
-                    - [0.430,0.399,0.387]
+                    - [0.100,0.066,0.049] # lower-left
+                    - [0.100,0.066,0.049] # lower-right
+                    - [0.100,0.066,0.049] # upper-left
+                    - [0.460,0.427,0.414]
                     # - [0.410,0.260,0.201] # upper-right
 
     grid-gradient-green:
@@ -1387,7 +1395,7 @@ styles:
 
     grid-gradient-garden:
         base: polygons
-        mix: [16grid-gradient]
+        mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1396,9 +1404,20 @@ styles:
                     - [0.050,0.033,0.025] # upper-left
                     - [0.050,0.033,0.025] # upper-right
 
-    grid-gradient-pitch:
+    grid-gradient-playground:
         base: polygons
         mix: [32grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.068,0.074,0.250] # lower-left
+                    - [0.590,0.100,0.288] # lower-right
+                    - [0.068,0.074,0.250] # upper-left
+                    - [0.068,0.074,0.250] # upper-right
+
+    grid-gradient-pitch:
+        base: polygons
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
