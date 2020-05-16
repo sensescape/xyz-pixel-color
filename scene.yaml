@@ -1280,7 +1280,7 @@ styles:
             uniforms:
                 u_colors:
                     - [0.000,0.168,0.180] # lower-left
-                    - [0.000,0.045,0.050] # lower-right
+                    - [0.000,0.025,0.030] # lower-right
                     - [0.000,0.168,0.180] # upper-left
                     - [0.000,0.168,0.180] # upper-right
 
@@ -1341,7 +1341,7 @@ styles:
 
     grid-gradient-recreation:
         base: polygons
-        mix: [8grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
