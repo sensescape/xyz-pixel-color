@@ -197,13 +197,12 @@ layers:
                     style: grid-gradient-forest
                     visible: true
         
-        # forest-landcover:
-        #     filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
-        #     draw:
-        #         polygons:
-        #             style: grid-gradient-green
-        #             color: [0.960,0.960,0.960]
-        #             visible: true
+        forest-landcover:
+            filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
+            draw:
+                polygons:
+                    style: grid-gradient-forestlandcover
+                    visible: true
 
         parks-and-national-forests-not-national-park:
             filter:
@@ -292,6 +291,14 @@ layers:
             draw:
                 polygons:
                     style: grid-gradient-hospital
+                    visible: true
+
+        recreation_ground:
+            filter:
+                kind: recreation_ground
+            draw:
+                polygons:
+                    style: grid-gradient-recreation
                     visible: true
 
         pedestrian:
@@ -1233,6 +1240,17 @@ styles:
                     - [0.171,0.300,0.259] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
+    grid-gradient-forestlandcover:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.000,0.000,0.000] # lower-left
+                    - [0.000,0.000,0.000] # lower-right
+                    - [0.000,0.320,0.256] # upper-left
+                    - [0.000,0.000,0.000] # upper-right
+
     grid-gradient-parks:
         base: polygons
         mix: [8grid-gradient]
@@ -1244,16 +1262,27 @@ styles:
                     - [0.000,0.342,0.380] # upper-left
                     - [0.050,0.033,0.025] # upper-right
 
+    # grid-gradient-garden:
+    #     base: polygons
+    #     mix: [32grid-gradient]
+    #     shaders:
+    #         uniforms:
+    #             u_colors:
+    #                 - [0.050,0.033,0.025] # lower-left
+    #                 - [0.036,0.510,0.455] # lower-right
+    #                 - [0.050,0.033,0.025] # upper-left
+    #                 - [0.050,0.033,0.025] # upper-right
+
     grid-gradient-garden:
         base: polygons
         mix: [32grid-gradient]
         shaders:
             uniforms:
                 u_colors:
-                    - [0.050,0.033,0.025] # lower-left
-                    - [0.036,0.510,0.455] # lower-right
-                    - [0.050,0.033,0.025] # upper-left
-                    - [0.050,0.033,0.025] # upper-right
+                    - [0.000,0.168,0.180] # lower-left
+                    - [0.000,0.045,0.050] # lower-right
+                    - [0.000,0.168,0.180] # upper-left
+                    - [0.000,0.168,0.180] # upper-right
 
     grid-gradient-playground:
         base: polygons
@@ -1310,6 +1339,17 @@ styles:
                     - [0.050,0.033,0.025] # upper-left
                     - [0.050,0.033,0.025] # upper-right
 
+    grid-gradient-recreation:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.095,0.170,0.180] # lower-left
+                    - [0.000,0.023,0.040] # lower-right
+                    - [0.095,0.170,0.180] # upper-left
+                    - [0.095,0.170,0.180] # upper-right
+
     grid-gradient-pedestrian:
         base: polygons
         mix: [8grid-gradient]
@@ -1345,7 +1385,7 @@ styles:
 
     grid-gradient-university-bldgs:
         base: polygons
-        mix: [32grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1356,7 +1396,7 @@ styles:
 
     grid-gradient-hospital-bldgs:
         base: polygons
-        mix: [32grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1367,7 +1407,7 @@ styles:
 
     grid-gradient-retail-bldgs:
         base: polygons
-        mix: [32grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
@@ -1378,7 +1418,7 @@ styles:
 
     grid-gradient-parks-bldgs:
         base: polygons
-        mix: [32grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
                 u_colors:
