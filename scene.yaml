@@ -253,6 +253,14 @@ layers:
                     style: grid-gradient-university
                     visible: true
 
+        school:
+            filter:
+                kind: school
+            draw:
+                polygons:
+                    style: grid-gradient-schools
+                    visible: true
+
         garden:
             filter:
                 kind: garden
@@ -1327,6 +1335,17 @@ styles:
                     - [0.150,0.163,0.230] # lower-right
                     - [0.050,0.033,0.025] # upper-left
                     - [0.050,0.033,0.025] # upper-right
+
+    grid-gradient-schools:
+        base: polygons
+        mix: [8grid-gradient]
+        shaders:
+            uniforms:
+                u_colors:
+                    - [0.030,0.031,0.070] # lower-left
+                    - [0.156,0.146,0.240] # lower-right
+                    - [0.030,0.031,0.070] # upper-left
+                    - [0.030,0.031,0.070] # upper-right
 
     grid-gradient-hospital:
         base: polygons
