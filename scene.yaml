@@ -162,6 +162,7 @@ layers:
                     - protect_class: ['2','3','5']
             draw:
                 polygons:
+                    # color: red
                     style: grid-gradient-green
                     visible: true
             us_national_park:
@@ -182,6 +183,7 @@ layers:
                 not: { protect_class: ['2','3','5']}
             draw:
                 polygons:
+                    # color: red
                     style: grid-gradient-conservation
                     visible: true
 
@@ -194,6 +196,7 @@ layers:
                     - operator: ['United States Forest Service']
             draw:
                 polygons:
+                    # color: red
                     style: grid-gradient-forest
                     visible: true
         
@@ -201,6 +204,7 @@ layers:
             filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
             draw:
                 polygons:
+                    # color: red
                     style: grid-gradient-forestlandcover
                     visible: true
 
@@ -215,8 +219,8 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
+                    # color: red
                     style: grid-gradient-parks
-                    color: [0.960,0.960,0.960]
                     visible: true
             national_park:
                 #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
@@ -445,7 +449,7 @@ layers:
                     width: [[13, 0.5px], [15, 1px], [17, 4px]]
                     outline:
                         color: [0.000,0.000,0.000]
-                        width: [[12, 0px], [13, 0.5px], [15, 1px], [17, 2px]]
+                        width: [[12, 0px], [13, 0.5px], [15, 1px], [17, 4px]]
             trunk_primary:
                 filter: { kind_detail: [trunk, primary] }
                 draw:
@@ -515,7 +519,7 @@ layers:
                         width: [[10, 0.5px], [12, 0.5px], [16, 1.5px], [17, 4px], [18, 7m]]
                         outline:
                             color: [0.000,0.000,0.000]
-                            width: [[10, 0px], [14, 1px], [17, 2px]]
+                            width: [[10, 0px], [14, 1px], [17, 4px]]
                 early:
                     filter: { $zoom: { max: 16 } }
                     draw:
@@ -531,7 +535,7 @@ layers:
                             width: [[10, 0.5px], [12, 0.5px], [16, 1.5px], [17, 4px], [18, 7m]]
                             outline:
                                 color: [0.000,0.000,0.000]
-                                width: [[10, 0px], [14, 1px], [17, 2px]]
+                                width: [[10, 0px], [14, 1px], [17, 4px]]
                     early:
                         filter: { $zoom: { max: 15 } }
                         draw:
@@ -555,7 +559,7 @@ layers:
                         width: [[11, 0.5px], [15, 1.25px], [17, 2.5px], [18, 5m]]
                         outline:
                             color: [0.000,0.000,0.000]
-                            width: [[11, 0px], [14, 0.5px], [17, 2px]]
+                            width: [[11, 0px], [14, 0.5px], [17, 3px]]
                 early:
                     filter: { $zoom: { max: 15 } }
                     draw:
@@ -568,10 +572,10 @@ layers:
                     draw:
                         lines:
                             color: [[11,[0.410,0.260,0.201]], [13,[0.220,0.207,0.202]]]
-                            width: [[11, 0.5px], [15, 1.25px], [17, 2px], [18, 5m]]
+                            width: [[11, 0.5px], [15, 1.25px], [17, 2px], [18, 6m]]
                             outline:
                                 color: [0.000,0.000,0.000]
-                                width: [[11, 0px], [14, 0.5px], [17, 2px]]
+                                width: [[11, 0px], [14, 0.5px], [17, 3px]]
                     early:
                         filter: { $zoom: { max: 15 } }
                         draw:
@@ -596,54 +600,45 @@ layers:
                 #                 color: [[11, global.white_color], [14, global.white_color], [15, global.black_color]]
                 #                 width: [[11, 0px], [14, 0px], [16, 0.25px], [18, 2px]]
 
-        # minor_road:
-        #     filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
-        #     draw:
-        #         lines:
-        #             color: [[11, global.ultralight_color], [14, global.mid_color], [16, global.white_color]]
-        #             width: [[11, 0.35px], [13, 0.5px], [14, 1px], [15, 1px], [16, 0.1px], [17, 4px], [18, 9m]]
-        #             outline:
-        #                 color: [[15, global.mid_color], [17, global.black_color]]
-        #                 width: [[11, 0px], [15, 0px], [16, 0.75px], [17, 1.5px], [18, 1.5px]]
-        #     early:
-        #         filter: { $zoom: { max: 16 } }
-        #         draw:
-        #             lines:
-        #                 order: 350
-        #                 outline:
-        #                     order: 351
-        #     # Is this junk code?
-        #     round:
-        #         filter: { $zoom: { min: 17 } }
-        #         draw:
-        #             lines:
-        #                 cap: round
-        #                 join: round
+        minor_road:
+            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
+            draw:
+                lines:
+                    style: lines-pixelate
+                    color: [[11,[0.410,0.260,0.201]], [13,[0.200,0.188,0.184]]]
+                    width: [[11, 0.5px], [15, 1.25px], [17, 2.5px], [18, 6m]]
+                    outline:
+                        color: [0.000,0.000,0.000]
+                        width: [[11, 0px], [14, 0.5px], [17, 3px]]
+            early:
+                filter: { $zoom: { max: 16 } }
+                draw:
+                    lines:
+                        order: 350
+                        outline:
+                            order: 351
+            # Is this junk code?
+            round:
+                filter: { $zoom: { min: 17 } }
+                draw:
+                    lines:
+                        cap: round
+                        join: round
 
-        #     tunnel:
-        #         filter: {is_tunnel: true, $zoom: { min: 13 } }
-        #         draw:
-        #             lines:
-        #                 color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
-        #                 outline:
-        #                     color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
-        #     minor_road_bridge:
-        #         filter: { is_bridge: true }
-        #         draw:
-        #             lines:
-        #                 cap: round
-        #                 outline:
-        #                     cap: butt
-        #     labels-minor_road:
-        #         filter: { $zoom: { min: 16 } }
-        #         draw:
-        #             text-blend-order:
-        #                 priority: 59
-        #                 visible: true
-        #                 text_source: name
-        #                 font:
-        #                     size: [[15,10px],[18,14px]]
-        #                     stroke: { color: global.roads_text_stroke, width: 4px }
+            # tunnel:
+            #     filter: {is_tunnel: true, $zoom: { min: 13 } }
+            #     draw:
+            #         lines:
+            #             color: [[13, global.light_color], [15, global.light_color], [16, global.ultralight_color]]
+            #             outline:
+            #                 color: [[13, global.white_color], [14, global.white_color], [15, global.light_color]]
+            minor_road_bridge:
+                filter: { is_bridge: true }
+                draw:
+                    lines:
+                        cap: round
+                        outline:
+                            cap: butt
         # service_road:
         #     filter: { kind: minor_road, kind_detail: service, $zoom: { min: 13 } }
         #     draw:
@@ -1215,6 +1210,18 @@ styles:
                     - [0.460,0.427,0.414]
                     # - [0.410,0.260,0.201] # upper-right
 
+    # grid-gradient-green:
+    #     base: polygons
+    #     mix: [8grid-gradient]
+    #     shaders:
+    #         uniforms:
+    #             u_colors:
+    #                 - [0.000,0.000,0.000] # lower-left
+    #                 - [0.000,0.000,0.000] # lower-right
+    #                 - [0.000,0.440,0.411] # upper-left
+    #                 - [0.000,0.000,0.000] # upper-right
+
+    ### darker version of above
     grid-gradient-green:
         base: polygons
         mix: [8grid-gradient]
@@ -1223,7 +1230,7 @@ styles:
                 u_colors:
                     - [0.000,0.000,0.000] # lower-left
                     - [0.000,0.000,0.000] # lower-right
-                    - [0.000,0.440,0.411] # upper-left
+                    - [0.000,0.180,0.168] # upper-left
                     - [0.000,0.000,0.000] # upper-right
 
     grid-gradient-conservation:
@@ -1270,17 +1277,6 @@ styles:
                     - [0.000,0.342,0.380] # upper-left
                     - [0.050,0.033,0.025] # upper-right
 
-    # grid-gradient-garden:
-    #     base: polygons
-    #     mix: [32grid-gradient]
-    #     shaders:
-    #         uniforms:
-    #             u_colors:
-    #                 - [0.050,0.033,0.025] # lower-left
-    #                 - [0.036,0.510,0.455] # lower-right
-    #                 - [0.050,0.033,0.025] # upper-left
-    #                 - [0.050,0.033,0.025] # upper-right
-
     grid-gradient-garden:
         base: polygons
         mix: [32grid-gradient]
@@ -1291,17 +1287,29 @@ styles:
                     - [0.000,0.025,0.030] # lower-right
                     - [0.000,0.168,0.180] # upper-left
                     - [0.000,0.168,0.180] # upper-right
+                # u_colors:
+                #     - [0.050,0.033,0.025] # lower-left
+                #     - [0.036,0.510,0.455] # lower-right
+                #     - [0.050,0.033,0.025] # upper-left
+                #     - [0.050,0.033,0.025] # upper-right
 
     grid-gradient-playground:
         base: polygons
-        mix: [32grid-gradient]
+        mix: [16grid-gradient]
         shaders:
             uniforms:
+                # u_colors:
+                #     - [0.068,0.074,0.250] # lower-left
+                #     - [0.590,0.100,0.288] # lower-right
+                #     - [0.068,0.074,0.250] # upper-left
+                #     - [0.068,0.074,0.250] # upper-right
                 u_colors:
-                    - [0.068,0.074,0.250] # lower-left
-                    - [0.590,0.100,0.288] # lower-right
-                    - [0.068,0.074,0.250] # upper-left
-                    - [0.068,0.074,0.250] # upper-right
+                    - [0.000,0.180,0.168] # lower-left
+                    - [0.770,0.259,0.131]
+                    # - [0.202,0.605,0.650]
+                    # - [0.770,0.131,0.525] # lower-right
+                    - [0.000,0.180,0.168] # upper-left
+                    - [0.000,0.180,0.168] # upper-right
 
     grid-gradient-pitch:
         base: polygons
@@ -1429,11 +1437,16 @@ styles:
         mix: [16grid-gradient]
         shaders:
             uniforms:
+                # u_colors:
+                #     - [0.100,0.066,0.049] # lower-left
+                #     - [0.100,0.066,0.049] # lower-right
+                #     - [0.100,0.066,0.049] # upper-left
+                #     - [0.510,0.215,0.107] # upper-right
                 u_colors:
                     - [0.100,0.066,0.049] # lower-left
                     - [0.100,0.066,0.049] # lower-right
                     - [0.100,0.066,0.049] # upper-left
-                    - [0.510,0.215,0.107] # upper-right
+                    - [0.490,0.238,0.216] # upper-right
 
     grid-gradient-parks-bldgs:
         base: polygons
