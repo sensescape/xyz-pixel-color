@@ -924,7 +924,7 @@ layers:
 
     places:
         data: { source: mapzen, layer: places }
-        enabled: false
+        enabled: true
         filter:
             name: true
         draw:
