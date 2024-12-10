@@ -1195,10 +1195,10 @@ styles:
         shaders:
             uniforms:
                 u_colors:
-                    - [0.200,0.200,0.200] # lower-left
-                    - [0.200,0.200,0.200] # lower-right
-                    - [0.200,0.200,0.200] # upper-left
-                    - [0.3860,0.380,0.380]
+                    - [0.100,0.100,0.100] # lower-left
+                    - [0.100,0.100,0.100] # lower-right
+                    - [0.100,0.100,0.100] # upper-left
+                    - [0.200,0.200,0.200]
                     # - [0.410,0.260,0.201] # upper-right
 
     # grid-gradient-green:
